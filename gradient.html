@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gradient Generator</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1 style="font-family: Andale Mono, monospace; color: white"> Gradient Background Generator </h1>
+    <section>
+        <div class="frame">
+            <button id="btn-1" class="btn-1">#051937</button>
+            <button id="btn-2" class="btn-2">#008793</button>
+        </div>
+        <h2 style="font-family: Andale Mono, monospace; color: white">Click to copy code:</h2>
+        <div class="container glass">
+            background-image: linear-gradient(to right, rgb(92, 145, 229), rgb(152, 63, 198));
+        </div>
+    </section>
+    <script>
+        let btn1 = document.getElementById("btn-1");
+        let btn2 = document.getElementById("btn-2");
+        let copyDiv = document.querySelector(".container.glass");
+        let rgb1= "#000";
+        let rgb2= "#fff";
+
+        const hexaValues = () => {
+            let myhexaValues = "0123456789abcdef";
+            let color ="#";
+            for (let i = 0; i < 6; i++) {
+                color=color+myhexaValues[Math.floor(Math.random() * 16)];
+            }
+                return color;  
+               
+        };
+
+        const handleButton1 = () => {
+            rgb1 = hexaValues();
+            console.log(rgb1);
+            btn1.innerText = rgb1;
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1},${rgb2})`;
+            copyDiv.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2})`;
+        };
+
+        const handleButton2 = () => {
+            rgb2 = hexaValues();
+            console.log(rgb2);
+            btn2.innerText = rgb2;
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1},${rgb2})`;
+            copyDiv.innerHTML = `background-image: linear-gradient(to right, ${rgb1},${rgb2})`;
+
+        };
+
+        btn1.addEventListener("click", handleButton1);
+        btn2.addEventListener("click", handleButton2);
+
+        copyDiv.addEventListener("click",() => {
+         navigator.clipboard.writeText(copyDiv.innerText)
+        });
+    </script>
+</body>
+</html>
+
+
